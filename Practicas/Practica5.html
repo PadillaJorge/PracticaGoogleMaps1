@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        #map {
+            height: 600px;
+            width: 70%;
+            background-color: #efefef;
+
+        }
+    </style>
+</head>
+
+<body class="bg-dark">
+    <div class="container my-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="row d-flex justify-content-center my-5">
+                    <h5 class="card-title">Ventana informativa</h5>
+                </div>
+                <div class="row d-flex justify-content-center my-5">
+                    <div class="bg-dark" id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script>
+        function iniciarMapa() {
+            // configurar las coordenadas
+            var coordenadas = { lat: 21.1236, lng: -101.68 };
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 13, center: coordenadas });
+
+
+            info = new google.maps.InfoWindow;
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: 21.1487,
+                        lng: -101.7103
+                    };
+
+                    console.log(pos);
+                    info.setPosition(pos);
+                    info.setContent("La Salle Bajío <br> + <img src='data:image/png;base64,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'>");
+                    info.open(map);
+                    map.setCenter(pos);
+                });
+            }
+        }
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=
+    AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciarMapa">
+    </script>
+</body>
+
+</html>

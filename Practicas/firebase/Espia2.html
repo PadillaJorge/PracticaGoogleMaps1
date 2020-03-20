@@ -57,11 +57,7 @@
 
            
 
-            ref.on("value", function (snapshot) {
-                console.log(snapshot.val().location);
-            }, function (error) {
-                console.log("Error: " + error.code);
-            });
+        
 
         });
 
@@ -95,28 +91,27 @@
                 map: map
             });
             if (navigator.geolocation) {
-                setInterval(function () {
-                    moverPosicion(marker)
-                }, 3000)
+                ref.on("value", function (snapshot) {
+                console.log(snapshot.val().location);
+                moverPosicionq(marker, snapshot.val().location)
+            }, function (error) {
+                console.log("Error: " + error.code);
+            });
 
             }
         }
 
 
 
-        function moverPosicion(marker) {
-            navigator.geolocation.getCurrentPosition(posicion => {
-                var pos = {
-                    lat: posicion.coords.latitude,
-                    lng: posicion.coords.longitude
-                }
-                marker.setPosition(new google.maps.LatLng(posicion.coords.latitude, posicion.coords.longitude))
-                map.panTo(new google.maps.LatLng(posicion.coords.latitude, posicion.coords.longitude))
+        function moverPosicion(marker, position) {
+           
+                marker.setPosition(new google.maps.LatLng(position.lat, position.lng))
+                map.panTo(new google.maps.LatLng(position.lat, position.lng))
                 map.setCenter(pos);
                 console.log(pos);
 
 
-            });
+       
            
 
         }

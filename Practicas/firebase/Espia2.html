@@ -93,7 +93,7 @@
             if (navigator.geolocation) {
                 ref.on("value", function (snapshot) {
                 console.log(snapshot.val().location);
-                moverPosicionq(marker, snapshot.val().location)
+                moverPosicion(marker, snapshot.val().location)
             }, function (error) {
                 console.log("Error: " + error.code);
             });

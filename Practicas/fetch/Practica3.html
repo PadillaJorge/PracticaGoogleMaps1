@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fetch3</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+ 
+      #map {
+        height: 100%;
+      }
+ 
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container my-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="row d-flex justify-content-center my-5">
+                    <h5 class="card-title">Fetch con marcadores</h5>
+                </div>
+                <div class="row d-flex justify-content-center my-5">
+                     <div id="map"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+  
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+ 
+    var coordenadas = {
+        lat: 0, 
+        lng: 0
+        }
+
+    var propiedades = {
+        center: coordenadas,
+        zoom: 2
+        }
+
+    function obtieneMarcadores() {
+        const markers = [
+            {
+                name:  "México",
+                longitude: "-99.1276",
+                latitude: "19.427"
+            },
+            {
+                name: "Brazil",
+                longitude: "-47.9292",
+                latitude: "-15.7801"
+            },
+            {
+                name: "Spain",
+                longitude: "-3.70327",
+                latitude: "40.4167"
+            }
+        ];
+        return markers;
+    }
+
+    function iniciaMapa() {
+
+        const map = new google.maps.Map(document.getElementById('map'), propiedades);
+
+        const marcadores = obtieneMarcadores();
+
+        for(marcador of marcadores) {
+                let marker = new google.maps.Marker({
+                map: map,
+                position: new google.maps.LatLng(marcador.latitude, marcador.longitude),
+                title: marcador.name
+            })
+        }
+
+    }
+
+
+
+ 
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa">
+    </script>
+  </body>
+</html>

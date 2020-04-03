@@ -16,78 +16,81 @@
 
 
 
-  
+
     <div class="container-fluid bg-dark p-5 my-5">
         <div class="container bg-white">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
                     <h1>Google maps bootstrap</h1>
                 </div>
-                
+
                 <div class="col-12" style="width: 100%; height: 400px;" id="mapa">
                 </div>
             </div>
             <form>
-            <div class="row">
-                <div class="col-4">
-                    <select name="idiom" id="sltIdiom" class="form-control" onchange="this.form.submit()">
-                      <option value="es">Spanish</option>
-                      <option value="en">English</option>
-                      <option value="it">Italian</option>
-                      <option value="zh">Chinese</option>
-                      <option value="ja">Japanese</option>
-                </select>
+                <div class="row">
+                    <div class="col-4">
+                        <select name="idiom" id="sltIdiom" class="form-control" onchange="this.form.submit()">
+                            <option value="es">Spanish</option>
+                            <option value="en">English</option>
+                            <option value="it">Italian</option>
+                            <option value="zh">Chinese</option>
+                            <option value="ja">Japanese</option>
+                        </select>
+                    </div>
+
                 </div>
-          
+            </form>
         </div>
-    </form>
-    </div>
 
 
 
 
 
 
-    <script>
-        const coordinates = {
-            lat: 0,
-            lng: 0
-        }
+        <script>
+            const coordinates = {
+                lat: 0,
+                lng: 0
+            }
 
-        const queryString = window.location.search;
+            const queryString = window.location.search;
 
-        const urlParams = new URLSearchParams(queryString);
+            const urlParams = new URLSearchParams(queryString);
 
-        const idiom = urlParams.get('idiom');
-        console.log(idiom);
-
-
-        document.getElementById('sltIdiom').value = idiom;
+            const idiom = urlParams.get('idiom');
+            console.log(idiom);
 
 
-        var script = document.createElement('script');
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa&language=' + idiom;
-        document.head.appendChild(script);
+            document.getElementById('sltIdiom').value = idiom;
 
-        function iniciaMapa() {
 
-            var map = new google.maps.Map(
-                document.getElementById('mapa'),
-                {
-                    center: coordinates,
-                    zoom: 3
-                }
-            );
-        }
-    </script>
+            var script = document.createElement('script');
+            script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa&language=' + idiom;
+            document.head.appendChild(script);
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            function iniciaMapa() {
 
-<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+                var map = new google.maps.Map(
+                    document.getElementById('mapa'),
+                    {
+                        center: coordinates,
+                        zoom: 3
+                    }
+                );
+            }
+        </script>
 
-   
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"></script>
+
+
 </body>
 
 </html>

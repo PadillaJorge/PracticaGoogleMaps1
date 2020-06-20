@@ -87,7 +87,7 @@ function iniciaMapa() {
 
         var coordenadas = { lat: 23.634501, lng: -102.552784 };
         var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 5, center: coordenadas });
+            document.getElementById('map'), { zoom: 4, center: coordenadas });
         res.forEach(element => {
             axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+element.Latitude +','+ element.Longitude+'&sensor=true&key=AIzaSyDjasiw3ifZOx0p0V7Hp_HHJvSwFObZeeI')
             .then(function (response) {

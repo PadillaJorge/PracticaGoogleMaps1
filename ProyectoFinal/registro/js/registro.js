@@ -40,6 +40,7 @@ async function Registrar() {
             }).then(() => {
                 console.log("Cuenta Creada")
                 swal("Exito", "Has creado una cuenta nueva", "success");
+                window.location.href="../principal/principal.html";
             }).catch((err)=>{
 
                 console.log(err);

@@ -4,6 +4,7 @@ var database = firebase.database();
 var nombre = ""
 
 database.ref('users').on('value', function(snap){
+    document.getElementById('chatArea').value =""
     snap.forEach(element => {
         console.log(element.val())
         document.getElementById('chatArea').value += ` ${element.val().Nombre}: ${element.val().Mensaje}\n`
